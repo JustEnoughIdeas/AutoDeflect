@@ -1,10 +1,11 @@
-﻿#Persistent
+#Persistent
 
 PointX1 := 469
 PointY1 := 160
 PointX2 := 1415
 PointY2 := 830
-PATH := "C:\Users\Адмін\Desktop\Ank\ball2.PNG" ; -- If you dont put "" things, script wont work!
+PATH := "C:\Users\Адмін\Desktop\Ank\ball2.PNG"  ; -- If you dont put "" things, script wont work!
+Click := 0  ; Set to 1 for click, 0 for Send {F} -- if you put that to 1 it will click instead of pressing F every time it detects ball
 
 loopActive := false
 return
@@ -29,9 +30,20 @@ F::
 
 	If ErrorLevel = 0
 {
-	Send, {F}
+            if (Click = 1)
+{
+
+	Send, {LButton}
 	ToolTip, !, %OutputVarX%, %OutputVarY%, 6
 }
+else {
+	Send, {F}
+	ToolTip, !, %OutputVarX%, %OutputVarY%, 6
+     }
+}
+
+
+
 
             if (!loopActive)
                 break
